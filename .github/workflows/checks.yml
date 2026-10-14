@@ -32,6 +32,8 @@ jobs:
         run: ./build.sh
       - name: Verify local signatures
         run: codesign --verify --deep --strict 'build/Red Lantern.app'
+      - name: Universal release packaging and extraction checks
+        run: ./release.sh
 
   secrets:
     runs-on: ubuntu-latest

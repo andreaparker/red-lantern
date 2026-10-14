@@ -16,6 +16,12 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/andreaparker/red-lantern/releases/latest/download/Red-Lantern-macOS-universal.zip"><strong>⬇ Download Red Lantern for Mac</strong></a><br>
+  macOS 14+ · Apple silicon &amp; Intel · Free<br>
+  <sub>Ad-hoc signed; not Apple-notarized. <a href="#get-started">First-open instructions</a> · <a href="https://github.com/andreaparker/red-lantern/releases/latest">Release notes &amp; checksums</a></sub>
+</p>
+
+<p align="center">
   <a href="#get-started">Get started</a> ·
   <a href="#choose-your-light">Presets</a> ·
   <a href="#set-it-and-leave-it">Scheduling</a> ·
@@ -45,7 +51,18 @@ Choose a gentle evening tint, add software dimming, or go fully red. Red Lantern
 
 ## Get started
 
-**Requires macOS 14 or later and Apple Command Line Tools.** Build on either an Apple silicon or Intel Mac:
+1. **[Download the Mac app](https://github.com/andreaparker/red-lantern/releases/latest/download/Red-Lantern-macOS-universal.zip)** — one ZIP for Apple silicon and Intel, macOS 14 or later. No build tools required.
+2. Double-click the ZIP, then drag **Red Lantern.app** to **Applications**.
+3. Open it from Applications. Use the horizon icon in your menu bar for Quick Controls.
+
+**First open:** this release has a local ad-hoc signature, **not a Developer ID signature or Apple notarization**. macOS may block the initial launch. If you trust this download, try opening it once, then use **System Settings → Privacy & Security → Open Anyway** for Red Lantern. Follow [Apple’s instructions](https://support.apple.com/en-us/102445); leave Gatekeeper enabled.
+
+To pin its launcher, right-click its Dock icon and choose **Options → Keep in Dock**. Checksums are available on the [release page](https://github.com/andreaparker/red-lantern/releases/latest).
+
+<details>
+<summary>Prefer to build from source?</summary>
+
+Install Apple Command Line Tools (`xcode-select --install`), then:
 
 ```sh
 git clone https://github.com/andreaparker/red-lantern.git
@@ -54,22 +71,9 @@ cd red-lantern
 open "build/Red Lantern.app"
 ```
 
-<details>
-<summary>First time building a Mac app?</summary>
-
-Install Apple’s command-line tools, then run the commands above:
-
-```sh
-xcode-select --install
-```
-
-You don’t need the full Xcode application or a paid developer account.
+`./build.sh` builds for your Mac’s architecture. `./release.sh` builds both architectures, verifies signatures after ZIP extraction, and writes the download and SHA-256 checksum to `build/release/`. Both use ad-hoc signing. You don’t need the full Xcode application or a paid developer account.
 
 </details>
-
-The build uses your Mac’s architecture and a local ad-hoc signature. A prebuilt, Apple-notarized installer is not provided.
-
-To keep it installed, copy **Red Lantern.app** from the `build` folder to **Applications**. To pin its launcher, right-click its Dock icon and choose **Options → Keep in Dock**.
 
 ## Choose your light
 
@@ -132,7 +136,13 @@ The app has **no networking code, accounts, analytics, or third-party runtime li
 
 Some display drivers, HDR/reference modes, or competing color utilities can override gamma-table adjustments. For predictable output, turn off **Night Shift**, **True Tone**, and other screen-color tools while using Red Lantern.
 
-Software dimming does not change physical backlight PWM or hardware temporal dithering. No medical benefits are claimed. Crash recovery depends on the helper and display driver remaining usable.
+Crash recovery depends on the helper and display driver remaining usable.
+
+### Does it stop screen flicker?
+
+**No. Red Lantern is a color and software-dimming utility, not an anti-flicker tool.** It does not disable backlight PWM, GPU/panel temporal dithering, or flashing content. We have tested color-table changes, but have not measured the screen’s optical flicker or clinically tested neurological benefits.
+
+Red-only output is not a photosensitivity safety guarantee: **saturated red flashing** has specific risks described in [W3C’s accessibility guidance](https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html). The app does not detect or suppress such content. See [flicker limitations and verification scope](docs/flicker.md).
 
 ## Contributing
 

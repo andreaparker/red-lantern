@@ -24,6 +24,7 @@ The [GitHub Actions workflow](.github/workflows/checks.yml) runs on pushes and p
 | **AddressSanitizer + UndefinedBehaviorSanitizer** | 116 bounded/truncated recovery-protocol cases, with no display writes during those tests. |
 | **Core regression tests** | 31 color, scheduling, settings, and screen-placement checks. |
 | **Native build + signatures** | Build the application and verify its local ad-hoc signatures. |
+| **Universal release package** | Compile Intel and Apple silicon binaries; check the ZIP’s file manifest, metadata, permissions, and private build paths; verify both architectures and signatures after extraction. |
 
 Checkout is pinned to an immutable commit, and the scanner download is checksum-pinned. The workflow uses read-only repository permissions and requires no stored signing keys.
 
@@ -35,6 +36,8 @@ Personal profiles, home-directory paths, local preferences, private logs, creden
 
 ## Scope and limitations
 
+Release downloads are ad-hoc signed, not Developer ID signed or Apple-notarized. Signature verification checks bundle integrity, not the publisher’s verified identity or Apple malware screening. Release assets include a SHA-256 checksum for download verification. Follow [Apple’s per-app opening instructions](https://support.apple.com/en-us/102445) if macOS blocks a trusted download; do not disable Gatekeeper globally.
+
 No findings were detected by the pre-publication automated checks. This is a scoped review, not an independent penetration test or a guarantee that the software is free of defects. The C analyzer does not analyze Swift; Swift was reviewed manually and checked with its compiler and regression tests.
 
-Crash restoration requires a functioning recovery helper and display driver. It cannot recover from simultaneous helper failure or a system/driver crash. The app’s warmth labels are approximate visual presets and make no medical claims.
+Crash restoration requires a functioning recovery helper and display driver. It cannot recover from simultaneous helper failure or a system/driver crash. The app’s warmth labels are approximate visual presets and make no medical claims. Red Lantern does not disable PWM or temporal dithering, detect flashing content, or guarantee protection from neurological triggers. See [flicker limitations](docs/flicker.md).
