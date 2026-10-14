@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Red Lantern sunset icon">
+  <defs>
+    <linearGradient id="background" x2="0" y2="1">
+      <stop stop-color="#3b101a"/>
+      <stop offset="1" stop-color="#110c10"/>
+    </linearGradient>
+    <linearGradient id="sun" x2="0" y2="1">
+      <stop stop-color="#ffbe6b"/>
+      <stop offset="1" stop-color="#ff4835"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop stop-color="#ff4d35" stop-opacity=".32"/>
+      <stop offset="1" stop-color="#ff4d35" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect x="1" y="1" width="126" height="126" rx="29" fill="url(#background)" stroke="#ffffff" stroke-opacity=".12"/>
+  <circle cx="64" cy="64" r="51" fill="url(#glow)"/>
+  <path d="M35 68a29 29 0 0 1 58 0Z" fill="url(#sun)"/>
+  <rect x="23" y="68" width="82" height="3" rx="1.5" fill="#ff704d"/>
+  <path d="M43 81h42M52 90h24" stroke="#ff704d" stroke-opacity=".35" stroke-width="2" stroke-linecap="round"/>
+</svg>
